@@ -1,14 +1,16 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Hello from Google App Engine!"
+    students = [
+        {"name": "Arya", "course": "Computer Engineering", "marks": 92},
+        {"name": "Rahul", "course": "AI & DS", "marks": 88},
+        {"name": "Sneha", "course": "IT", "marks": 95}
+    ]
 
-@app.route("/about")
-def about():
-    return "This is a simple Python cloud project."
+    return render_template("index.html", students=students)
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=8080, debug=True)
+    app.run(debug=True)
